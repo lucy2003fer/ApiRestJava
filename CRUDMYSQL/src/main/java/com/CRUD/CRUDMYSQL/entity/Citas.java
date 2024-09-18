@@ -22,17 +22,30 @@ import lombok.NoArgsConstructor;
 @Builder
 @Table(name="citas")
 public class Citas {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	
-	private int consultorio;
-	
-	@Column(length=30,nullable=false)
-	private String doctor;
-	
-	@ManyToOne
-	@JoinColumn(name="fk_persona")
-	@JsonIgnoreProperties("citas")
-	private Persona persona;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    
+    private int consultorio;
+    
+    @Column(columnDefinition="TEXT")
+    private String observacion;
+ 
+    
+    @ManyToOne
+    @JoinColumn(name="fk_persona")
+    @JsonIgnoreProperties({"citas", "formatos"})
+    private Persona persona;
+    
+    @ManyToOne
+    @JoinColumn(name="fk_doctores")
+    @JsonIgnoreProperties({"citas", "formatos"})
+    private Doctores doctores;
+    
+    @ManyToOne
+    @JoinColumn(name="fk_formato")
+    @JsonIgnoreProperties({"persona", "doctores", "formatos"}) 
+    private Formato formato;
+    
 }
+

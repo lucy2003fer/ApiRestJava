@@ -11,23 +11,31 @@ import com.CRUD.CRUDMYSQL.repository.PersonaRepository;
 
 @Service
 public class PersonaService {
-	@Autowired
-	private PersonaRepository personaRepository;
-	
-	public List<Persona> getAllPersonas(){
-		return personaRepository.findAll();
-		
-	}
-	
-	public Optional<Persona> getPersona(Long id){
-		return personaRepository.findById(id);
-	}
-	
-	public Persona savePersona(Persona persona) {
-		return personaRepository.save(persona);
-	}
-	
-	public void deletePersona(Long id) {
-		personaRepository.deleteById(id);
-	}
+    @Autowired
+    private PersonaRepository personaRepository;
+    
+    public List<Persona> getAllPersonas() {
+        return personaRepository.findAll();
+    }
+    
+    public Optional<Persona> getPersona(Long id) {
+        return personaRepository.findById(id);
+    }
+    
+    public Persona savePersona(Persona persona) {
+        return personaRepository.save(persona);
+    }
+    
+    public void deletePersona(Long id) {
+        personaRepository.deleteById(id);
+    }
+    
+    public Persona updatePersona(Long id, Persona persona) {
+        if (personaRepository.existsById(id)) {
+            persona.setId(id);
+            return personaRepository.save(persona);
+        } else {
+            return null;
+        }
+    }
 }

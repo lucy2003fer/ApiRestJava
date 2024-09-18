@@ -11,26 +11,36 @@ import com.CRUD.CRUDMYSQL.repository.CitasRepository;
 
 @Service
 public class CitasService {
-	@Autowired
-	private CitasRepository citasRepository;
-	
-	public List<Citas> getAllCitas(){
-		return citasRepository.findAll();
-	}
-	
-	public Optional<Citas> getCitas(Long id){
-		return citasRepository.findById(id);
-	}
-	
-	public Citas saveCitas(Citas citas) {
-		return citasRepository.save(citas);
-	}
-	
-	public void deleteCitas(Long id) {
-		citasRepository.deleteById(id);
-	}
-	
-	public List<Citas> getCitasByPersonas(Long id){
-		return  citasRepository.findByPersonaId(id);
-	}
+    @Autowired
+    private CitasRepository citasRepository;
+    
+    public List<Citas> getAllCitas() {
+        return citasRepository.findAll();
+    }
+    
+    public Optional<Citas> getCitas(Long id) {
+        return citasRepository.findById(id);
+    }
+    
+    public Citas saveCitas(Citas citas) {
+        return citasRepository.save(citas);
+    }
+    
+    public void deleteCitas(Long id) {
+        citasRepository.deleteById(id);
+    }
+    
+    public Citas updateCitas(Long id, Citas citas) {
+        if (citasRepository.existsById(id)) {
+            citas.setId(id);
+            return citasRepository.save(citas);
+        } else {
+            return null;
+        }
+    }
+    
+    public List<Citas> getCitasByPersonas(Long id) {
+        return citasRepository.findByPersonaId(id);
+    }
+
 }

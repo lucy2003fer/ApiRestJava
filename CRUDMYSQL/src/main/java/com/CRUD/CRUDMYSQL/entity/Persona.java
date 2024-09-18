@@ -24,15 +24,31 @@ import lombok.NoArgsConstructor;
 @Builder
 @Table(name="persona")
 public class Persona {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	@Column(length=30,nullable=false)
-	private String nombre;
-	@Column(length=30,nullable=false)
-	private String apellido;
-	
-	@OneToMany(mappedBy="persona",cascade=CascadeType.ALL)
-	@JsonIgnoreProperties("persona")
-	private List<Citas> citas;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    
+    @Column(unique = true)
+    private Long identificacion;
+
+    @Column(length=30, nullable=false)
+    private String nombre;
+
+    @Column(length=30, nullable=false)
+    private String apellido;
+    
+    private int edad;
+    
+    private String sexo;
+
+    @OneToMany(mappedBy="persona", cascade=CascadeType.ALL)
+    @JsonIgnoreProperties("persona")
+    private List<Citas> citas;
+    
+    @OneToMany(mappedBy="persona", cascade=CascadeType.ALL)
+    @JsonIgnoreProperties("persona")
+    private List<Formato> formato;
+    
+    
+    
 }
