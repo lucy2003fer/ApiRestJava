@@ -44,7 +44,7 @@ public class Doctores {
 
     @OneToMany(mappedBy = "doctores", cascade = CascadeType.ALL)
     @JsonIgnoreProperties("doctores")
-    private List<Formato> formatos;
+    private List<Formato> formato;
 
     
     

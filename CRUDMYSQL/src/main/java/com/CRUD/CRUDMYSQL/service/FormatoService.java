@@ -35,4 +35,8 @@ public class FormatoService {
         return null; 
     }
 
+    public void deleteFormato(Long id) {
+        formatoRepository.deleteById(id);
+    }
+
 }

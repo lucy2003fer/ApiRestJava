@@ -42,6 +42,6 @@ public class Formato {
     private Doctores doctores;
     
     @OneToMany(mappedBy="formato", cascade=CascadeType.ALL)
-    @JsonIgnoreProperties("citas")
+    @JsonIgnoreProperties("formato")
     private List<Citas> citas;
 }

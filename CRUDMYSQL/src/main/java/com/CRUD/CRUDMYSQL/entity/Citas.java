@@ -34,17 +34,17 @@ public class Citas {
     
     @ManyToOne
     @JoinColumn(name="fk_persona")
-    @JsonIgnoreProperties({"citas", "formatos"})
+    @JsonIgnoreProperties({"citas", "formato"})
     private Persona persona;
     
     @ManyToOne
     @JoinColumn(name="fk_doctores")
-    @JsonIgnoreProperties({"citas", "formatos"})
+    @JsonIgnoreProperties({"citas", "formato"})
     private Doctores doctores;
     
     @ManyToOne
     @JoinColumn(name="fk_formato")
-    @JsonIgnoreProperties({"persona", "doctores", "formatos"}) 
+    @JsonIgnoreProperties({"persona", "doctores", "formato"}) 
     private Formato formato;
     
 }
